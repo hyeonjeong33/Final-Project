@@ -1,0 +1,17 @@
+<jsp:include page="left_home.jsp"/>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<link rel="stylesheet" type="text/css" href="resources/css/edit_info.css">
+
+<sec:authentication property="principal.username" var="username" />
+	<sec:authentication property="principal.email" var="useremail" />
+	<sec:authentication property="principal.gender" var="usergender" />
+	<sec:authentication property="principal.nickname" var="usernickname" />
+	<sec:authentication property="principal.birth" var="userbirth" />
+ 	<sec:authentication property="principal.usermini" var="usermini" />
+ 	<sec:authentication property="principal.bgm" var="userbgm" />
+ 	<sec:authentication property="principal.status" var="userstatus" />
+ 	
+ 	
+ 	
+ 	<script type="text/javascript" src="resources/js/login/sign_up.js"></script>
+ 	

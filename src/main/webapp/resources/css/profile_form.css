@@ -1,0 +1,67 @@
+
+.box1{
+    background: url("../../resources/image/basic_mini.png") no-repeat;
+    background-size: 10em 18em;
+      float: left;
+}
+
+.box2{
+    background: url("../../resources/image/basic_mini_man.png") no-repeat;
+    background-size: 10em 18em;
+      float: left;
+}
+
+
+#mini_hair, #mini_hair1{
+   position: absolute;
+ }
+ 
+#mini_body, #mini_body1 {
+    position: absolute;
+  }
+  
+#my_info{
+   /* margin-left: 31%; */
+   margin-top: 5%;
+   /* text-align: justify; */
+   text-align: -webkit-center;
+}  
+
+#base > #drag{
+   width: 10em;
+   height: 16em;
+}
+
+#drag_box > div > img{
+   width: 10em;
+   height: 18em;
+}
+
+
+
+#submit_btn {
+   margin-top: 1em;
+   background-color: #262626;
+   color: white;
+   height: 3em;
+   width: 10em;
+   border-radius: 2em;
+   border: none;
+   margin-left: 16%;
+}
+
+
+label {
+    padding-right: 2em;
+    float: left;
+}   
+   
+#profile_table{
+   text-align: right;
+   border-spacing: 0px 10px;
+    border-collapse: separate;
+}
+
+#base{
+	height: 17em;
+}

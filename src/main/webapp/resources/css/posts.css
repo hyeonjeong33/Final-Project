@@ -1,0 +1,75 @@
+.posts {
+    position: relative;
+    width: 27%; /* 가로 크기 지정 */
+    float: left;
+    margin: 1em;
+    background-color: white;
+}
+
+
+.div_con{
+    width: 100%;
+    margin: 5%;	
+    margin-top: auto;    
+}
+
+.post_box {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+} 
+
+.posts:before {
+    content: "";
+    display: block;
+    padding-top: 100%; /* 정사각형일 경우 */
+}
+
+/* 
+.posts img {
+	
+	display: block; Otherwise it keeps some space around baseline
+	min-width: 100%; Scale up to fill container width
+	min-height: 100%; Scale up to fill container height
+	-ms-interpolation-mode: bicubic;
+	Scaled images look a bit better in IE now
+}
+ */
+ 
+.posts img{
+    min-width: -webkit-fill-available;
+    min-height: -webkit-fill-available;	
+    max-height: -webkit-fill-available;
+    max-width: -webkit-fill-available;
+    
+}
+
+#myCenterModal{
+	
+}
+
+.btn btn-default btn-xs{
+	position: absolute;
+    margin-left: 90%;
+	
+}
+
+.username_div{
+    margin-top: 2em;
+    height: -webkit-fill-available;
+    width: 100%;	
+}
+
+.hash_div{
+	position: absolute;
+    width: 100%;
+    height: -webkit-fill-available;	
+}
+
+.example-1{
+	background-color: #fafafa !important;
+}
+
+

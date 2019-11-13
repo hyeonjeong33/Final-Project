@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="guestBookComm">
+
+	<select id="selectList" resultType="GuestBookCommDto">
+		SELECT * FROM GUESTBOOKCOMM ORDER BY COMMNUM 
+	</select>
+	
+	<insert id="insert" parameterType="GuestBookCommDto">
+		INSERT INTO GUESTBOOKCOMM VALUES(COMMNUM.NEXTVAL,#{boardnum},#{username},#{nickname},#{guestbookcomm},SYSDATE,null,null)
+	</insert>
+	
+	<select id="rownumone" resultType="GuestBookCommDto">
+		SELECT * FROM(SELECT COMMNUM,ROWNUM AS R FROM(SELECT COMMNUM FROM GUESTBOOKCOMM ORDER BY COMMNUM DESC)A)B
+		WHERE B.R=1
+	</select>
+	 
+	<select id="babo" parameterType="map" resultType="GuestBookCommDto">
+		SELECT * FROM GUESTBOOKCOMM WHERE COMMNUM = #{commnum}
+	</select>  
+	
+	<delete id="delete" parameterType="GuestBookCommDto">
+		DELETE FROM GUESTBOOKCOMM WHERE COMMNUM = #{commnum} 
+	</delete>
+	 
+</mapper>

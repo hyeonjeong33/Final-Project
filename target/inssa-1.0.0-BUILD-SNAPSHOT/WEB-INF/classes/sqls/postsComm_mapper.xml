@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="postsComm">
+
+   <select id="selectList" resultType="PostsCommDto">
+      SELECT * FROM POSTSCOMM ORDER BY GROUPNO, TITLETAB
+   </select>
+   
+   <insert id="insert" parameterType="PostsCommDto">
+      INSERT INTO POSTSCOMM VALUES(COMMNUM.NEXTVAL,#{boardnum},#{username},#{postscomm},SYSDATE,GROUPNO.NEXTVAL,1,0)
+   </insert>
+   
+   <insert id="add_comm" parameterType="PostsCommDto">
+      INSERT INTO POSTSCOMM VALUES(COMMNUM.NEXTVAL,#{boardnum},#{username},#{postscomm},SYSDATE,
+      (SELECT GROUPNO FROM POSTSCOMM WHERE COMMNUM=#{commnum}),
+      (SELECT GROUPSQ FROM POSTSCOMM WHERE COMMNUM=#{commnum})+1,1
+      )
+   </insert>
+   
+   <select id="rownumone" resultType="PostsCommDto">
+      SELECT * FROM(SELECT COMMNUM,ROWNUM AS R FROM(SELECT COMMNUM FROM POSTSCOMM ORDER BY COMMNUM DESC)A)B
+      WHERE B.R=1
+   </select>
+    
+   <select id="babo" parameterType="map" resultType="PostsCommDto">
+      SELECT * FROM POSTSCOMM WHERE COMMNUM = #{commnum}
+   </select>  
+   
+   <delete id="delete" parameterType="PostsCommDto">
+      DELETE FROM POSTSCOMM WHERE COMMNUM = #{commnum} 
+   </delete>
+    
+</mapper>

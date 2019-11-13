@@ -1,0 +1,136 @@
+/* 한글 테스트 */
+
+
+/* body { */
+/* 	background-image: url("resources/image/login_back2.gif"); */
+/* 	background-size: cover; */
+/* 	background-repeat: no-repeat; */
+/* } */
+
+body{
+    background: antiquewhite;
+    WIDTH: -webkit-fill-available;
+    HEIGHT: -webkit-fill-available;
+}
+
+#page {
+    background: white;
+    width: 35em;
+    height: -webkit-fill-available;
+    padding-left: 13em;
+    margin-left: 30%;
+}
+
+#logo {
+    margin-top: 1em;
+    margin-left: 1em;
+    width: 16em;
+}
+
+.box_join {
+	
+}
+
+.inp_text input {
+	border-radius: 10px;
+	border: 1px solid #e1e1e1;
+	padding-left: 2em;
+	height: 3em;
+	width: 24em;
+	margin-top: 2em;
+	color: #8f8f8f;
+}
+
+#join_bt {
+	margin-top: 1em;
+    background-color: #f87013;
+    color: white;
+    padding: 5px;
+    height: 3em;
+    width: 27em;
+    border-radius: 1em;
+    border: 0;
+}
+
+#agree_text {
+	margin-top: 2em;
+	color: #8f8f8f;
+	font-size: 0.8em;
+	margin-left: 5em;
+}
+
+#idcheck_bt {
+	margin-top: 2em;
+	margin-left: 0.5em;
+	background-color: #f87013;
+	color: white;
+	padding: 5px;
+	height: 3em;
+	width: 7em;
+	border-radius: 1em;
+}
+
+/* #naver_bt {
+   float:none;
+   margin-top: 2em;
+   background-color: #3eb044;
+   color: white;
+   padding: 5px;
+   height: 3em;
+    width: 19em;
+   border-radius: 1em;
+} */
+
+.gender_radio{
+	width: 1em !important;
+	height: 1em !important;
+}
+
+#birth{
+	margin-top: 2em;
+    margin-bottom: 1em;
+}
+
+#send_email{
+	margin-top: 2em;
+    margin-left: 0.5em;
+    background-color: #f87013;
+    color: white;
+    padding: 5px;
+    height: 3em;
+    width: 10em;
+    border-radius: 1em;
+}
+
+#radio_div{
+	border: 1px solid #e1e1e1;
+    margin-top: 2em;
+    width: 26em;
+    height: 3em;
+    border-radius: 10px;
+    text-align: center;
+    font: 400 13.3333px Arial;
+    color: #8f8f8f;
+}
+
+.id_box{
+	width: 16em!important;
+}
+
+.email_box{
+	width: 13em!important;
+}
+
+#example1 > div{
+	border: 1px solid #e1e1e1;
+    border-radius: 10px;
+    width: 22em!important;
+    height: 5em!important;
+    text-align: center;
+    margin-top: 0.5em;
+}
+
+#id_chk_confirm > b, #email_chk_confirm > b{
+	margin-left: 0.4em;
+    margin-top: 0.5em;
+}

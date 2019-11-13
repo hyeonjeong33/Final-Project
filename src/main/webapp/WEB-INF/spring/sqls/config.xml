@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	
+	<!-- type이 너무길어서 별칭을 준다. -->
+	<typeAliases>
+      <typeAlias type="com.mvc.inssa.user.dto.UserDto" alias="userDto"/>
+      <typeAlias type="com.mvc.inssa.cloud.dto.CloudDto" alias="cloudDto"/>
+      <typeAlias type="com.mvc.inssa.posts.dto.PostsDto" alias="postsDto"/>
+      <typeAlias type="com.mvc.inssa.GuestBook.dto.GuestBookDto" alias="GuestBookDto"/>
+      <typeAlias type="com.mvc.inssa.guestbookcomm.dto.GuestBookCommDto" alias="GuestBookCommDto"/>
+      <typeAlias type="com.mvc.inssa.postscomm.dto.PostsCommDto" alias="PostsCommDto"/>
+      <typeAlias type="com.mvc.inssa.diary.dto.DiaryDto" alias="diaryDto"/>
+      <typeAlias type="com.mvc.inssa.friend.dto.FriendDto" alias="friendDto"/>
+   </typeAliases>
+	
+	<!-- resource : java Resources -->
+	<!-- resource : src/main/resources -->
+	<mappers>
+		<mapper resource="/sqls/mapper.xml"/>
+		<mapper resource="/sqls/cloud_mapper.xml"/>
+		<mapper resource="/sqls/guestBook_mapper.xml"/>
+		<mapper resource="/sqls/guestBookComm_mapper.xml"/> 
+		<mapper resource="/sqls/postsComm_mapper.xml"/>
+		<mapper resource="/sqls/diary_mapper.xml"/>
+		<mapper resource="/sqls/friend_mapper.xml"/>
+	</mappers>
+	 
+	
+</configuration>

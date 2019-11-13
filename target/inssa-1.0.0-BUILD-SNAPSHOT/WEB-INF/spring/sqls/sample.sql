@@ -1,0 +1,18 @@
+DROP TABLE USERS;
+
+CREATE TABLE users(
+		username VARCHAR2(20) NOT NULL,
+		password VARCHAR2(100) NOT NULL ,
+		enabled INTEGER NULL ,	
+		authority VARCHAR2(100)	NOT NULL,
+		nickname VARCHAR2(100) NOT NULL,
+		gender VARCHAR2(100) NOT NULL,
+		email VARCHAR2(100) NOT NULL,
+		birth DATE NOT NULL,	
+		usermini VARCHAR2(1000) NULL,
+		bgm	VARCHAR2(4000) NULL,
+		status VARCHAR2(2000) NULL
+);
+
+SELECT * FROM USERS;
+	

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="diary">
+	<!-- 일정추가 -->
+	<insert id="add_schedule" parameterType="diaryDto">
+		INSERT INTO diary VALUES(diaryseq.nextval, #{username}, #{title}, #{start_date}, #{end_date}, #{start_time}, #{end_time})
+	</insert>
+	<!-- 아이디로 일정가져오기 -->
+	<select id="schedulelist" parameterType="String" resultType="diaryDto">
+		SELECT scheduleno, title, start_date, end_date, start_time, end_time FROM diary WHERE username = #{username}
+	</select>
+	<!-- 일정번호로 정보가져오기 -->
+	<select id="detail_content" parameterType="int" resultType="diaryDto">
+		SELECT scheduleno, username, title, start_date, end_date, start_time, end_time FROM diary WHERE scheduleno = #{scheduleno}
+	</select>
+	<!-- 일정 수정 -->
+	<update id="schedule_update" parameterType="diaryDto">
+		UPDATE diary
+		SET title=#{title}, start_date=#{start_date}, end_date=#{end_date}, start_time=#{start_time}, end_time=#{end_time}
+		WHERE scheduleno=#{scheduleno}
+	</update>
+	<!-- 일정 삭제 -->
+	<delete id="delete_schedule" parameterType="int">
+		DELETE FROM diary WHERE scheduleno = #{scheduleno}
+	</delete>
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="friend">
+	<insert id="insertFriend" parameterType="friendDto">
+		INSERT INTO NOTIFICATION VALUES(#{username},#{friend},'N')
+	</insert>
+	<select id="friendList" parameterType="String"
+		resultType="friendDto">
+		SELECT DISTINCT * FROM NOTIFICATION WHERE
+		USERNAME=#{username} AND ALLOW='N'
+	</select>
+	<select id="countRequest" parameterType="String"
+		resultType="int">
+		SELECT COUNT(DISTINCT username) FROM NOTIFICATION WHERE FRIEND=#{username}
+		AND ALLOW='N'
+	</select>
+	<select id="requestList" parameterType="String"
+		resultType="friendDto">
+		SELECT DISTINCT * FROM NOTIFICATION WHERE FRIEND=#{username} AND ALLOW='N'
+	</select>
+
+	<delete id="deleteRequest" parameterType="map">
+		DELETE FROM NOTIFICATION WHERE USERNAME=#{username} AND FRIEND=#{friend}
+	</delete>
+	<update id="updateRequest" parameterType="friendDto">
+		UPDATE NOTIFICATION SET ALLOW='Y' WHERE USERNAME=#{username} AND
+		FRIEND=#{friend}
+	</update>
+	<insert id="insertPairRequest" parameterType="friendDto">
+		INSERT INTO NOTIFICATION VALUES(#{friend},#{username},'Y')
+	</insert>
+	<delete id="removeCurrentList" parameterType="map">
+		DELETE FROM NOTIFICATION WHERE USERNAME=#{username} AND FRIEND=#{friend}
+	</delete>
+	<select id="friend_confirm" parameterType="String"
+		resultType="String">
+		SELECT FRIEND FROM NOTIFICATION WHERE USERNAME=#{username}
+		AND ALLOW='Y' AND NOT FRIEND=#{username}
+	</select>
+</mapper>

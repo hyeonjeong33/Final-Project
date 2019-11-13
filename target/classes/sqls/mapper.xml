@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mola">
+	<!-- [회원] -->
+	<!-- 회원리스트 -->
+	<select id="user_list" resultType="userDto">
+		SELECT *
+		FROM users
+		WHERE
+		enabled = 'Y'
+	</select>
+	<!-- 친구추천리스트 -->
+	<select id="recommend_friend" resultType="userDto">
+		SELECT *
+		FROM USERS
+		WHERE USERNAME NOT IN (SELECT USERNAME FROM NOTIFICATION WHERE
+		FRIEND=#{username} AND ALLOW='Y') AND NOT (USERNAME=#{username})
+	</select>
+	<select id="my_friend" resultType="userDto">
+		SELECT *
+		FROM USERS
+		WHERE USERNAME IN(SELECT USERNAME FROM NOTIFICATION WHERE
+		FRIEND=#{username} AND ALLOW='Y') AND NOT (USERNAME=#{username})
+
+	</select>
+	<!-- 회원가입 -->
+	<insert id="user_add" parameterType="userDto">
+		INSERT INTO users
+		VALUES(#{username}, #{password}, 1, 'ROLE_USER', #{nickname},
+		#{gender}, #{email}, #{birth}, null, null, '상태글을 등록해주세요')
+	</insert>
+	<!-- 회원상세정보 -->
+	<select id="user_detail" resultType="userDto"
+		parameterType="String">
+		SELECT username, password, gender, nickname, email,
+		birth, usermini, bgm, status
+		FROM users
+		WHERE username = #{username}
+	</select>
+	<!-- 회원 수정 -->
+	<update id="user_update" parameterType="userDto">
+		UPDATE users
+		SET nickname
+		= #{nickname}, password = #{password}, status = #{status}
+		WHERE
+		username = #{username}
+	</update>
+	<!-- 회원삭제 -->
+	<update id="user_delete" parameterType="userDto">
+		UPDATE users
+		SET enabled =
+		0
+		WHERE username = #{username}
+	</update>
+
+	<!-- [유효성체크] -->
+	<!-- 이메일체크 -->
+	<select id="email_chk" parameterType="String"
+		resultType="Integer">
+		SELECT COUNT(*)
+		FROM users
+		WHERE email = #{email}
+	</select>
+	<!-- 아이디체크 -->
+	<select id="id_chk" parameterType="String" resultType="Integer">
+		SELECT
+		COUNT(*)
+		FROM users
+		WHERE username = #{username}
+	</select>
+
+	<!-- 회원정보찾아오기 -->
+	<!-- 아이디찾기 -->
+	<select id="find_id_by_nickname" parameterType="map"
+		resultType="String">
+		SELECT username
+		FROM users
+		WHERE nickname = #{nickname} AND
+		email = #{email}
+	</select>
+	<!-- 비밀번호찾기 -->
+	<select id="find_pw_by_id" parameterType="String"
+		resultType="String">
+		SELECT password
+		FROM users
+		WHERE username = #{username}
+	</select>
+	<!-- 임시비밀번호 -->
+	<update id="change_pass" parameterType="map">
+		UPDATE users
+		SET password
+		= #{password}
+		WHERE username = #{username}
+	</update>
+
+	<!-- 시큐리티 -->
+	<select id="selectUserById" resultType="userDto">
+        <![CDATA[
+            SELECT
+                *
+            FROM
+                users
+            WHERE
+                username=#{ username}
+        ]]>
+	</select>
+
+
+	<!-- 미니미 -->
+	<select id="select_mini" resultType="userDto"
+		parameterType="String">
+		SELECT usermini FROM users WHERE username = #{username}
+	</select>
+
+	<update id="update_mini" parameterType="userDto">
+		UPDATE users SET usermini = #{usermini} WHERE username = #{username}
+	</update>
+
+	<!-- 게시글 작성 -->
+	<insert id="post_add" parameterType="postsDto">
+		INSERT INTO posts
+		VALUES(BOARDNUMSEQ.NEXTVAL, #{username}, #{postcomm},
+		#{post_content:CLOB}, #{post_thumbnail}, SYSDATE, #{hashtag})
+	</insert>
+
+	<!-- 게시글 list -->
+	<select id="post_list" resultType="postsDto">
+		SELECT * FROM posts WHERE
+		username=#{username} ORDER BY BOARDNUM DESC
+	</select>
+
+	<!-- 게시글detail -->
+	<select id="post_detail" resultType="postsDto">
+		SELECT * FROM
+		posts WHERE boardnum = #{boardnum}
+	</select>
+
+	<!-- 게시글 hashtag list <select id="hashtag_list" parameterType="String" resultType 
+		= "postsDto"> <![CDATA[SELECT * FROM posts WHERE hashtag LIKE '%'||#{hashtag}||' 
+		#%' OR hashtag LIKE '%'||#{hashtag}||'#%' OR hashtag LIKE '%'||#{hashtag} 
+		OR hashtag LIKE #{hashtag}||'#%' ORDER BY BOARDNUM DESC ]]> </select> -->
+	<!-- 전체 검색(이름or해시태그) -->
+	<select id="searchlist" parameterType="String"
+		resultType="postsDto">
+		SELECT *
+		FROM posts
+		WHERE username LIKE '%'||#{keyword}||'%'
+		OR hashtag LIKE '%#'||#{keyword}||' %'
+		OR hashtag LIKE
+		'%#'||#{keyword}||'%'
+		OR hashtag LIKE '%#'||#{keyword}||'#%'
+		ORDER BY
+		BOARDNUM DESC
+	</select>
+
+	<select id="searchlist1" parameterType="String"
+		resultType="postsDto">
+		SELECT *
+		FROM posts
+		WHERE username LIKE '%'||#{keyword}||'%'
+		ORDER BY BOARDNUM DESC
+	</select>
+
+	<select id="searchlist2" parameterType="String"
+		resultType="postsDto">
+		SELECT *
+		FROM posts
+		WHERE hashtag LIKE '%#'||#{keyword}||' %'
+		OR hashtag LIKE '%#'||#{keyword}||'%'
+		OR hashtag LIKE
+		'%#'||#{keyword}||'#%'
+		ORDER BY BOARDNUM DESC
+	</select>
+
+	<select id="selectCount" resultType="Int">
+		SELECT COUNT(*)
+		FROM posts
+		WHERE username LIKE '%'||#{keyword}||'%'
+		OR hashtag LIKE
+		'%#'||#{keyword}||' %'
+		OR hashtag LIKE '%#'||#{keyword}||'%'
+		OR hashtag
+		LIKE '%#'||#{keyword}||'#%'
+	</select>
+
+	<!-- 게시글 삭제 -->
+	<delete id="deletePost" parameterType="PostsDto">
+		DELETE FROM POSTS WHERE BOARDNUM=#{boardnum}
+	</delete>
+
+	<select id="selectTimePosts" parameterType="String"
+		resultType="postsDto">
+		SELECT * FROM POSTS
+		WHERE USERNAME IN (
+		SELECT USERNAME FROM NOTIFICATION
+		WHERE FRIEND=#{username} AND ALLOW='Y' )
+		ORDER BY POSTDATE DESC
+
+
+	</select>
+
+</mapper>

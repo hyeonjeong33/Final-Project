@@ -1,0 +1,126 @@
+
+
+h2{
+   color:black;
+   text-align: left;
+}
+    
+#mini_container{
+   float: left;
+   position: relative;   
+   margin-left: 2em;
+}
+
+.box1{
+    background: url("../../resources/image/basic_mini.png") no-repeat;
+    background-size: 10em 18em;
+      float: left;
+}
+
+.box2{
+    background: url("../../resources/image/basic_mini_man.png") no-repeat;
+    background-size: 10em 18em;
+      float: left;
+}
+
+#base, #base1{
+   width: 10em;
+    height: 18em;
+   
+}
+  
+#base > #drag, #base1 > #drag{
+   width: 10em;
+   height: 18em;
+}
+    
+.mini_hair, #mini_hair1 {
+   position: absolute;
+   width: 10em;
+   height: 10.5em;
+   z-index:1;
+   border: 1px solid gold;
+ }
+ 
+.mini_body, #mini_body1 {
+    position: absolute;
+    width: 10em;
+    height: 10.5em;
+    z-index:1;
+   border: 1px solid gold;
+  }    
+  
+#blocker_hair {
+   position: absolute;
+   width: 10em;
+   height: 9.5em;
+   z-index:100;
+   border: 1px solid red;
+}
+   
+#blocker_body {
+    position: absolute;
+    width: 10em;
+    height: 8em;
+    z-index:100;
+    border: 1px solid red;
+    top: 12.5em;
+}
+
+#drag_box > div > img{
+   width: 10em;
+    height: 18em;
+}
+
+#div2 > img{
+   position: relative;
+   float:left;
+   width: 10em;
+    height: 8em;
+    border: 1px solid blue;
+}
+
+#select_box{
+    margin-top: -1.5em;
+    border: 1px solid pink;
+    margin-left: 11em;
+}
+
+#submit_bt{
+    margin-top: 1em;
+    margin-left: 45em;
+    
+   background-color: #f87013;
+   color: white;
+   height: 3em;
+    width: 5em;
+   border-radius: 1em;
+}
+
+#mini_container{
+	z-index: 100;	
+    width: 90%;
+    height: 50%;
+    margin-top: 3em;
+    margin-left: 5%;
+    border: 1px solid #868581;
+}
+
+
+h2{
+	text-align: center;	
+}
+
+#select_gender{
+	text-align: center;	
+}
+
+#alert{
+	text-align: center;	
+	font-size: 2em;
+}
+  
+  
+#male, #female{
+	margin-top: 2em;
+}

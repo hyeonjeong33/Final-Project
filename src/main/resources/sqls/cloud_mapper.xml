@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cloud">
+	<insert id="insert_image" parameterType="cloudDto">
+		INSERT INTO CLOUD VALUES(infoseq.nextval, cloudnumseq.nextval,#{username},#{cloudcomm},#{content},#{contentname},SYSDATE,#{cloudfolder})
+	</insert>
+	<insert id="insert_next_image" parameterType="cloudDto">
+		INSERT INTO CLOUD VALUES(infoseq.nextval, cloudnumseq.CURRVAL,#{username},#{cloudcomm},#{content},#{contentname},SYSDATE, #{cloudfolder})
+	</insert>
+	<select id="selectList" resultType="cloudDto" parameterType="map">
+		SELECT * FROM CLOUD WHERE USERNAME=#{username} AND cloudfolder=#{cloudfolder} AND CONTENT IS NOT NULL
+	</select>
+	<select id="selectFolderList" resultType="cloudDto" parameterType="String">
+		SELECT DISTINCT cloudfolder FROM CLOUD WHERE USERNAME=#{username}
+	</select> 
+	<!-- 폴더생성 -->  
+	<insert id="insertFolder" parameterType="cloudDto">
+		INSERT INTO CLOUD VALUES(infoseq.nextval, cloudnumseq.nextval,#{username},NULL,NULL,NULL,SYSDATE,#{cloudfolder})
+	</insert>
+	<!-- 폴더삭제 -->
+	<delete id="folder_delete" parameterType="String">
+		DELETE FROM CLOUD WHERE cloudfolder=#{cloudfolder}
+	</delete>
+	<!-- 사진삭제 -->
+	<delete id="photo_delete" parameterType="Integer">
+		DELETE FROM CLOUD WHERE seq=#{seq}
+	</delete>
+</mapper>

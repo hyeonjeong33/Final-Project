@@ -1,0 +1,29 @@
+package com.mvc.inssa.posts.biz;
+
+import java.util.List;
+
+import com.mvc.inssa.posts.dto.PostsDto;
+
+public interface PostsBiz {
+
+	public List<PostsDto> selectList(String username);
+
+	public PostsDto selectOne(int postnum);
+
+	public int insert(PostsDto dto);
+
+	public List<PostsDto> hashtagList(String hashtag);
+
+	public int delete(int boardnum);
+
+	public List<PostsDto> searchlist(String keyword);
+
+	public List<PostsDto> searchlist1(String keyword);
+
+	public List<PostsDto> searchlist2(String keyword);
+
+	public int selectCount(String keyword);
+
+	public List<PostsDto> selectTimePosts(String username);
+
+}
